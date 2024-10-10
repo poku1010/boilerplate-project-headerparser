@@ -24,6 +24,22 @@ app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
 
+// 新增 /api/whoami 路由
+app.get('/api/whoami', function (req, res) {
+  // 取得 IP 地址、語言首選項、軟體資訊
+  const ipaddress = req.ip;
+  const language = req.headers['accept-language'];
+  const software = req.headers['user-agent'];
+
+  // 回傳 JSON
+  res.json({
+    ipaddress: ipaddress,
+    language: language,
+    software: software,
+  });
+});
+
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
